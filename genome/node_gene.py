@@ -21,7 +21,4 @@ class node_gene:
 
     def add_to_output(self,input_value):
         self.output += input_value
-
-node = node_gene(1,'Input')
-node.add_to_output(0.5)
-print(node.calc_output())
+    

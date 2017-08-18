@@ -2,6 +2,7 @@
 
 from node_gene import node_gene
 from connect_gene import connect_gene
+from random import random
 
 class Genome:
     
@@ -23,8 +24,8 @@ class Genome:
             self.nbr_nodes += 1
         for i in range(self.nbr_input):
             for j in range(self.nbr_output):
-                weight = 0.5
-                self.connections.append(connect_gene(self.nodes[i], self.nodes[XXX], weight, True, self.innov))
+                weight = random()*2-1 # Random weight between -1 and 1
+                self.connections.append(connect_gene(self.nodes[i], self.outputs[j], weight, True, self.innov))
                 self.innov += 1
         
     def propagate(self, input):
