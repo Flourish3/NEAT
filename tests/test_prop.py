@@ -1,3 +1,3 @@
-from NEAT.genome.genome import Genome
+import genome
 
 g = Genome()

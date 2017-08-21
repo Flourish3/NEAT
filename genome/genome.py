@@ -1,7 +1,7 @@
 #genome.py
 
-from node_gene import node_gene
-from connect_gene import connect_gene
+from .node_gene import node_gene
+from .connect_gene import connect_gene
 from random import random
 
 class Genome:
@@ -66,6 +66,3 @@ class Genome:
     
     def add_connection(self):
         pass
-
-g = Genome(1,1)
-print(g.propagate([1]))
