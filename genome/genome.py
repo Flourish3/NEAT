@@ -24,10 +24,13 @@ class Genome:
             self.nbr_nodes += 1
         for i in range(self.nbr_input):
             for j in range(self.nbr_output):
-                weight = random()*2-1 # Random weight between -1 and 1
+                weight = self.generate_weight(1) 
                 self.connections.append(connect_gene(self.nodes[i], self.outputs[j], weight, True, self.innov))
                 self.innov += 1
         
+    def generate_weight(self,range):
+        return unform(-1*range,range) # Random weight between -range and range
+
     def propagate(self, input):
         #Check len(input == nbr_input)
         for j in range(self.nbr_input):
@@ -67,19 +70,25 @@ class Genome:
         mutate_connection.enabled = False
 
         self.nodes[self.nbr_nodes] = node_gene(self.nbr_nodes,"Hidden") 
-        
+        #Connection between previous input and new hidden        
         self.connections.apped(connect_gene(mutate_connection.input_node, self.nodes[self.nbr_nodes],1,innov))
-
+        #Connection between hidden and previous output
         self.connections.append(connect_gene(self.nodes[self.nbr_nodes],mutate_connection.output_node, mutate_connection.weight,innov+1))
 
         self.nbr_nodes += 1
 
-
+    #Adds a new connection between two random nodes
     def mutate_add_connection(self,innov):
         node1 = self.nodes[random.randrange(self.nbr_nodes)]
         node2 = self.nodes[random.randrange(self.nbr_nodes)]
-        weight = random.random()*2-1
+        weight = self.generate_weight(1)
         self.connections.append(connect_gene(node1,node2,weight,innov))
 
-    def mutate_change_weights(self):
-        pass
+    #Changes the weights on the connections in the genome
+    def mutate_change_weights(self,mutation_chance):
+        for conn in self.connections:
+            if conn.enabled
+                if random() < mutation_chance:
+                    conn.weight += self.generate_weight(0.25)
+                else:
+                    conn.weight = self.generate_weight(1)
