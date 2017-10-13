@@ -1,35 +1,22 @@
 from genome.genome import Genome
+from config import config
 
-#inputs = 3
-#outputs = 1
-compatability_constants = [1, 1, 0.4]
-compatability_distance = 3
-#population = 150
-max_gen_without_improvement = 15
-
-class neat:
+class NEAT:
     def __init__(self, inputs, outputs, population):
         self.inputs = inputs
         self.outputs = outputs
-        self.population = population
+        self.population_nbr = population
         self.genome_list = []
-        for _ in range(population):
-            genome_list.append(Genome(inputs,outputs))
-        self.fitness_list = []
-        self.genome_index = 0
+        self.config = config()
+        for i in range(population_nbr):
+            genome_list.append(Genome(inputs,outputs,i))
+
 
     def get_next_genome(self):
         return self.genome_list[self.genome_index]
     
-    def set_fitness(self, fitness):
-        self.fitness_list[self.genome_index] = fitness
-        if self.genome_index < self.population:
-            self.genome_index += 1
-            return True
-        else:
-            self.genome_index = 0
-            return False
-
+    def set_fitness(self, genome, fitness):
+        self.genome_list[genome.index].fitness = fitness
 
     def progress_generation(self):
         
